@@ -1,9 +1,9 @@
 from keras import backend as K
 from keras.engine.topology import Layer
 from keras.engine.topology import InputSpec
-from keras.layers.recurrent import Recurrent
 from keras import activations
 from keras import initializers
+from keras.layers.recurrent import Recurrent
 import numpy as np
 
 class Force(Recurrent):
