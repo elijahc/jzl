@@ -12,9 +12,9 @@ with open(path.join(here,'README.md'), encoding='utf-8') as f:
 setup(
         name = 'jzl',
 
-        version='0.0.1',
-        packages = ['jzl'],
-        description = 'jzl kitchen sink',
+        version='0.0.2',
+        packages = ['jzl','jzl.utils','jzl.keras'],
+        description = 'jzl toolshed',
         author = 'Elijah C',
         author_email = 'elijah.christensen@ucdenver.edu',
         url = 'https://github.com/elijahc/jzl',
