@@ -15,6 +15,7 @@ class NeuroSurgMat(MatWrapper):
         self.data = None
         self._clfp = None
         self._cmacro_lfp = None
+        self._metadata = None
 
     @property
     def CLFP(self):
@@ -43,7 +44,7 @@ class NeuroSurgMat(MatWrapper):
     def metadata(self):
         if self.data is None:
             self.data = sio.loadmat(self.mat_fp)
-        if self._metadata = None:
+        if self._metadata is None:
             self._metadata = {
                     'lfp':{'sampFreqHz':None,'timeStart':None,'timeEnd':None},
                     'mer':{'sampFreqHz':None,'timeStart':None,'timeEnd':None},
