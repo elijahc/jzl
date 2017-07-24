@@ -20,7 +20,7 @@ def mt_pspec(data,win,samp_freq=1,df=1):
         fft_data = np.fft.fft(split_data)[:,1:win//2]*2
         fft_split_data.append(fft_data)
 
-    freqs = np.fft.fftfreq(win,d=1/samp_freq)
+    freqs = np.fft.fftfreq(win,d=1/samp_freq)[1:]
     mtspec_data = np.array(fft_split_data).mean(axis=1)
     mtpspec = np.abs(mtspec_data.swapaxes(0,1))**2
     return (mtpspec,freqs,tapers)
