@@ -1,4 +1,5 @@
 import numpy as np
+import mtspec.multitaper as mtm
 
 def rolling_window(a, window):
     shape = a.shape[:-1] + (a.shape[-1] - window + 1, window)
@@ -6,7 +7,6 @@ def rolling_window(a, window):
     return np.lib.stride_tricks.as_strided(a, shape=shape, strides=strides)
 
 def mtspec(data,win,df=1):
-    import mtspec.multitaper as mtm
     win = int(win)
     tw = int(df*win/2)
     L = int(2*tw)-1
@@ -21,5 +21,5 @@ def mtspec(data,win,df=1):
         fft_split_data.append(fft_data)
 
     mtspec_data = np.array(fft_split_data).mean(axis=1)
-    mtpspec = 10*np.log10(np.abs(mtspec_data.swapaxes(0,1))**2)
+    mtpspec = np.abs(mtspec_data.swapaxes(0,1))
     return (mtpspec,tapers)

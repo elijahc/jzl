@@ -16,7 +16,7 @@ class Sussillo(Recurrent):
 
                  **kwargs):
 
-        super(Force, self).__init__(**kwargs)
+        super(Sussillo, self).__init__(**kwargs)
         self.units = units
         self.activation = activations.get(activation)
         self.use_bias = use_bias

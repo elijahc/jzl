@@ -38,3 +38,18 @@ class NeuroSurgMat(MatWrapper):
                 cmacro_lfp[i,:] = np.squeeze(self.data['CMacro_LFP_0'+str(i+1)])
             self._cmacro_lfp = cmacro_lfp
         return self._cmacro_lfp
+
+    @property
+    def metadata(self):
+        if self.data is None:
+            self.data = sio.loadmat(self.mat_fp)
+        if self._metadata = None:
+            self._metadata = {
+                    'lfp':{'sampFreqHz':None,'timeStart':None,'timeEnd':None},
+                    'mer':{'sampFreqHz':None,'timeStart':None,'timeEnd':None},
+                    'eeg':{'sampFreqHz':None,'timeStart':None,'timeEnd':None},
+                    }
+            for rec in list(self._metadata.keys()):
+                self._metadata[rec]['sampFreqHz']=self.data[rec][0][0][0][0][0]
+                self._metadata[rec]['timeStart']=np.squeeze(self.data[rec][0][0][1]).item()
+                self._metadata[rec]['timeEnd']=np.squeeze(self.data[rec][0][0][2]).item()
