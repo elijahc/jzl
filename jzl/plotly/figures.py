@@ -4,16 +4,15 @@ from .layouts import PowerSpectrumLayout
 
 class Spectrogram(go.Figure):
     def __init__(self,title,z,y,colorscale='Jet',**kwargs):
-        self.trace = dict(
+        self.data = [dict(
                 type='heatmapgl',
                 y=y,
                 z=z,
                 colorscale=colorscale,
                 colorbar=dict(
-                    title='Power (dB)',
+                    title='Power (dB)'
                     ),
-                )
-        self.data = [trace]
+                )]
         self.layout = PowerSpectrumLayout(title=title).build()
 
         super(Spectrogram,self).__init__(**kwargs)
