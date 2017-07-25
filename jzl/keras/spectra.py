@@ -6,9 +6,11 @@ import mtspec.multitaper as mtm
 class RollingWindow(Layer):
 
     def __init__(self,window_size,
+                 batch_size=1,
                  window_overlap=0,
                  **kwargs):
         super(RollingWindow,self).__init__(**kwargs)
+        self.batch_size = batch_size
         self.win = window_size
         self.overlap = window_overlap
 
@@ -21,9 +23,8 @@ class RollingWindow(Layer):
         return output_shape
 
     def call(self, x):
-        output_shape = compute_output_shape(x.shape)
-        output = np.empty(shape=output_shape)
-        for i in np.arange(output_shape[0]):
+        output = np.empty(shape=(self.batch_size,int(x.shape[1]//self.win),self.win))
+        for i in np.arange(self.batch_size):
             output[i] = rolling_window(x[i],self.win)
         return output
 
