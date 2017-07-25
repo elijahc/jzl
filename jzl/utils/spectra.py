@@ -8,7 +8,7 @@ def rolling_window(a, window):
 
 def mt_pspec(data,win,samp_freq=1,df=1):
     win = int(win)
-    tw = int(df*win/2)
+    tw = df*win/2
     L = int(2*tw)-1
 
     tapers,lamb,theta = mtm.dpss(win,tw,L)

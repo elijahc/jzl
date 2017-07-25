@@ -55,3 +55,9 @@ class NeuroSurgMat(MatWrapper):
                 self._metadata[rec]['timeStart']=np.squeeze(self.data[rec][0][0][1]).item()
                 self._metadata[rec]['timeEnd']=np.squeeze(self.data[rec][0][0][2]).item()
         return self._metadata
+
+class NeuroSurgDataset(object):
+
+    def __init__(self, data_dir):
+        self.data_dir = data_dir
+        # TODO Check if manifest file exists, if not create empty one
