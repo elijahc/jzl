@@ -1,10 +1,22 @@
 # jzl
 
-Collection of tools and datasets for labwork in jZlab
+Python package for collection of tools, util functions, and datasets for labwork in jZlab
 
-### Datasets
+## Installation
+```bash
+$ git clone https://github.com/elijahc/jzl
+$ cd jzl
+$ pip install ./
+```
 
-#### Usage
+## Dataset autoloading
+
+*Supported Datasets*
+- (MNIST)[http://yann.lecun.com/exdb/mnist/]
+- (EMNIST)[https://www.nist.gov/srd/nist-special-database-19]
+- (Kohn V1)[https://crcns.org/data-sets/vc/pvc-8/about]
+
+### Usage
 
 Just import the dataset library, and call a load method
 
@@ -18,7 +30,3 @@ import jzl.datasets.emnist as emnist
 (x_train,y_train,w_train),(x_test,y_test,w_test) = emnist.load_digits()
 ```
 
-*Supported Datasets*
-- (MNIST)[http://yann.lecun.com/exdb/mnist/]
-- (EMNIST)[https://www.nist.gov/srd/nist-special-database-19]
-- (Kohn V1)[https://crcns.org/data-sets/vc/pvc-8/about]
