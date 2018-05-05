@@ -1,6 +1,7 @@
 import scipy.io as sio
 import numpy as np
 import os
+from ..utils.data_utils import get_file
 
 def get_train_test(mat_dat):
     train,test,mapping = mat_dat['dataset'][0][0]
@@ -12,7 +13,15 @@ def get_mapping(mat_dat):
 
     return mapping
 
-def get_im_lab_writ(mat_dat,squeeze=True):
+def get_im_lab_writ(mat_fp,squeeze=True):
+    if not os.path.exists(mat_fp):
+        get_file(fname='emnist.zip',
+            dset_name='emnist',
+            origin='http://www.itl.nist.gov/iaui/vip/cs_links/EMNIST/matlab.zip',
+            extract=True,
+            archive_format='zip')
+
+    mat_dat = sio.loadmat(mat_fp)
     train,test,mapping = get_train_test(mat_dat)
 
     x_train,y_train,w_train = train[0][0]
@@ -26,30 +35,42 @@ def get_im_lab_writ(mat_dat,squeeze=True):
 
     return (x_train,y_train,w_train),(x_test,y_test,w_test)
 
-def load_mnist(data_dir='~/data/emnist'):
+def load_mnist(data_dir=None):
+    if data_dir is None:
+        data_dir=os.path.expanduser('~/.datasets/emnist')
+
     mat_fp = os.path.join(data_dir,'matlab','emnist-mnist.mat')
-    dat = sio.loadmat(mat_fp)
 
-    return get_im_lab_writ(dat)
+    return get_im_lab_writ(mat_fp)
 
-def load_digits(data_dir='~/data/emnist'):
+def load_digits(data_dir=None):
+    if data_dir is None:
+        data_dir=os.path.expanduser('~/.datasets/emnist')
+
     mat_fp = os.path.join(data_dir,'matlab','emnist-digits.mat')
-    dat = sio.loadmat(mat_fp)
 
-    return get_im_lab_writ(dat)
+    return get_im_lab_writ(mat_fp)
 
-def load_letters(data_dir='~/data/emnist'):
+def load_letters(data_dir=None):
+    if data_dir is None:
+        data_dir=os.path.expanduser('~/.datasets/emnist')
+
     mat_fp = os.path.join(data_dir,'matlab','emnist-letters.mat')
-    dat = sio.loadmat(mat_fp)
 
-    return get_im_lab_writ(dat)
+    return get_im_lab_writ(mat_fp)
 
-def load_byclass(data_dir='~/data/emnist'):
+def load_byclass(data_dir=None):
+    if data_dir is None:
+        data_dir=os.path.expanduser('~/.datasets/emnist')
+
     mat_fp = os.path.join(data_dir,'matlab','emnist-byclass.mat')
-    dat = sio.loadmat(mat_fp)
 
-    return get_im_lab_writ(dat)
+    return get_im_lab_writ(mat_fp)
 
 def load_balanced():
-    pass
+    if data_dir is None:
+        data_dir=os.path.expanduser('~/.datasets/emnist')
 
+    mat_fp = os.path.join(data_dir,'matlab','emnist-balanced.mat')
+
+    return get_im_lab_writ(mat_fp)

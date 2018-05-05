@@ -13,7 +13,7 @@ setup(
         name = 'jzl',
 
         version='0.0.4',
-        packages = ['jzl','jzl.utils','jzl.keras','jzl.plotly'],
+        packages = ['jzl','jzl.utils','jzl.keras','jzl.datasets'],
         description = 'jzl toolshed',
         author = 'Elijah C',
         author_email = 'elijah.christensen@ucdenver.edu',
