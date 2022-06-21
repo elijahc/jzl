@@ -3,7 +3,7 @@ coverage==4.4.1
 execnet==1.4.1
 Keras==2.0.6
 mtspec==0.3.2
-numpy==1.13.1
+numpy==1.22.0
 pandas==0.20.3
 py==1.4.34
 pyflakes==1.5.0
